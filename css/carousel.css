@@ -2,6 +2,74 @@
 -------------------------------------------------- */
 /* Padding below the footer and lighter body text */
 
+.yt-image{
+
+
+
+}
+#player{
+  min-height:240px;
+}
+
+#header-spacer{
+  height: 90px;
+}
+
+.calpush {
+  height: auto;
+}
+
+.darken-background{
+  background: rgb(255,0,255);
+  background: rgba(10,10,10,.8);
+}
+
+.bottomrounded {
+-webkit-border-bottom-right-radius: 4px;
+-webkit-border-bottom-left-radius: 4px;
+-moz-border-radius-bottomright: 4px;
+-moz-border-radius-bottomleft: 4px;
+border-bottom-right-radius: 4px;
+border-bottom-left-radius: 4px;
+
+padding: 0px 12px 0px 12px;
+
+background: rgb(255,0,255);
+background: rgba(10,10,10,.8);
+}
+
+.toprounded {
+-webkit-border-top-left-radius: 4px;
+-webkit-border-top-right-radius: 4px;
+-moz-border-radius-topleft: 4px;
+-moz-border-radius-topright: 4px;
+border-top-left-radius: 4px;
+border-top-right-radius: 4px;
+
+padding: 10px 12px 0px 12px;
+
+background: rgb(255,0,255);
+background: rgba(10,10,10,.8);
+}
+
+.centererer{
+  z-index: 9999;
+  position: fixed;
+  top: 0;
+  width:90%; /*if you want the margin-left (last value below) is half this*/
+  left: 50%; /*start the block half way across the page*/
+  margin: 0 0 0 -45%;/*now shift left half the width*/
+}
+
+.footer{
+  z-index: 9999;
+  position: fixed;
+  bottom: 0;
+  width:90%; /*if you want the margin-left (last value below) is half this*/
+  left: 50%; /*start the block half way across the page*/
+  margin: 0 0 0 -45%;/*now shift left half the width*/
+}
+
 body {
   padding-bottom: 40px;
   color: #5a5a5a;
@@ -54,8 +122,11 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  min-width: 100%;
-  height: 500px;
+  /*min-width: 100%;*/
+  max-width:1439px;
+  overflow:hidden;
+  /*height: auto;*/
+  /*min-height:100%;*/
 }
 
 

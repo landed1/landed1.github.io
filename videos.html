@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,14 +24,18 @@
 
     <!-- Custom styles for this template -->
     <link href="css/carousel.css" rel="stylesheet">
+    <!--load ng -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
+    <script src="js/video-controller.js"></script>
+
   </head>
 <!-- NAVBAR
 ================================================== -->
-  <body>
-    <div class="navbar-wrapper">
+  <body ng-controller="VideoCtrl">
+    <div class="navbar-wrapper-video" >
       <div class="container">
 
-        <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class=" navbar-inverse centererer bottomrounded" role="navigation">
           <div class="container">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -44,9 +48,9 @@
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-               <!-- <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li class="active"><a href="videos.html">Videos</a></li>
+                <!--<li><a href="#contact">Contact</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
                   <ul class="dropdown-menu">
@@ -67,7 +71,7 @@
       </div>
     </div>
 
-    <div id="header-spacer"></div>
+    
 
     <!-- Marketing messaging and featurettes
     ================================================== -->
@@ -75,46 +79,22 @@
 
     <div class="container marketing">
 
-      <!-- Three columns of text below the carousel -->
-      <div class="row">
-        <div class="col-lg-4">
-          <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
-          <h2>Heading</h2>
-          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-      </div><!-- /.row -->
-
-
+    <div id="header-spacer"></div>
       <!-- START THE FEATURETTES -->
-
-      <hr class="featurette-divider">
 
       <div class="row featurette">
         <div class="col-md-7">
-          <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+          <h2>Video {{vidno}}. <span class="text-muted">{{header}}</span></h2>
+          <p class="lead">{{blurb}}</p>
         </div>
         <div class="col-md-5">
-          <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+          <div id="player" class="yt-image"></div>
         </div>
       </div>
 
       <hr class="featurette-divider">
 
-      <div class="row featurette">
+      <!--<div class="row featurette">
         <div class="col-md-5">
           <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
         </div>
@@ -136,10 +116,31 @@
         </div>
       </div>
 
-      <hr class="featurette-divider">
+      <hr class="featurette-divider">-->
 
       <!-- /END THE FEATURETTES -->
-
+      <h2>More Gameplay Videos from gamerdj</h2>
+      <!-- Three columns of text below the carousel -->
+      <div class="row">
+        <div class="col-lg-4">
+          <img class="img-circle" src="holder.js/140x140" alt="Villa - kelly Rowland">
+          <h2>Giovanni and COD</h2>
+          <p>Giovanni and COD','My very first gamer dj video - hope you like the track and that you want to share.</p>
+          <p><a class="btn btn-default" href="#" ng-click="swapVideo('OcCK9HkZWCg',2,'Giovanni and COD','My very first gamer dj video - hope you like the track and that you want to share.')" role="button">Load This &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
+          <h2>Villa COD Black OPs and Kelly Rowland 'Work'.</h2>
+          <p>I really had a decent finish to this game though when I do watch it back at times I wonder wtf!</p>
+          <p><a class="btn btn-default" ng-click="swapVideo('riDUCw4BuMQ',3,'Kelly Rowland and Villa','Inspiration from the gym radio - finally got a chance to add this track.')" role="button">Load This &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
+          <h2>Villa COD Black OPs and Kelly Rowland 'Work'.</h2>
+          <p>I really had a decent finish to this game though when I do watch it back at times I wonder wtf!</p>
+          <p><a class="btn btn-default" role="button">Load This &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+      </div><!-- /.row -->
 
      
 
@@ -150,7 +151,7 @@
 
 
      <!-- FOOTER -->
-      <footer class="toprounded">
+      <footer class="footer toprounded">
         <p class="pull-right"><a href="#">Back to top</a></p>
         <p>&copy; 2014 www.cambs.eu &middot; I am a sticky responsive footer !</p>
       </footer>
@@ -162,5 +163,54 @@
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="libs/bootstrap/js/bootstrap.min.js"></script>
     <script src="js/holder.js"></script>
+
+    <script>
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: 'auto' ,
+          width: '100%',
+          videoId:'8Z5gktEhQ7U',// 'M7lc1UVf-VE',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          setTimeout(stopVideo, 6000);
+          done = true;
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }
+    </script>
+
+
+
+
+
+
   </body>
 </html>
