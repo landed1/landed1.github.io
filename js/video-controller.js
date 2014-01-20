@@ -27,8 +27,12 @@ var videoApp = angular.module('videoApp', []);
 	$scope.blurb="I find it weird how I can watch gameplay of others and in fact I find myself observing what I did during gameplay. Spotting areas of stupidity for example rushing at tanks with small arms.";
 
 	$http.get('http://landed1.github.io/js/videoStore.json?cb='+new Date().getTime()).success(function(data) {
-   		console.log('got videos loaded ok');
-    	//$scope.videos = data;
+   		//console.log('got videos loaded ok');
+    	$scope.videos = data;
+    	console.log($scope.videos);
+    	//now enable the swap video feed to be active...
+
+
   	});
 
    $scope.swapVideo=function($vid,$vidno,$header,$blurb){
