@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="videoApp">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,8 +25,10 @@
     <!-- Custom styles for this template -->
     <link href="css/carousel.css" rel="stylesheet">
     <!--load ng -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.js"></script>
     <script src="js/video-controller.js"></script>
+    <!--<script src="js/videoModel.js"></script>-->
 
   </head>
 <!-- NAVBAR
@@ -123,7 +125,7 @@
       <!-- Three columns of text below the carousel -->
       <div class="row">
         <div class="col-lg-4">
-          <img class="img-circle" src="holder.js/140x140" alt="Villa - kelly Rowland">
+          <img class="img-circle" src-data="holder.js/140x140" alt="Villa - kelly Rowland">
           <h2>Giovanni and COD</h2>
           <p>Giovanni and COD','My very first gamer dj video - hope you like the track and that you want to share.</p>
           <p><a class="btn btn-default" href="#" ng-click="swapVideo('OcCK9HkZWCg',2,'Giovanni and COD','My very first gamer dj video - hope you like the track and that you want to share.')" role="button">Load This &raquo;</a></p>

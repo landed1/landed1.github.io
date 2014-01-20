@@ -11,6 +11,8 @@ Commercial use requires attribution.
 var Holder = Holder || {};
 (function (app, win) {
 
+	//console.log(app);
+
 var preempted = false,
 fallback = false,
 canvas = document.createElement('canvas');
@@ -381,6 +383,7 @@ function parse_flags(flags, options) {
 
 for (var flag in app.flags) {
 	if (!app.flags.hasOwnProperty(flag)) continue;
+	//console.log(app.flags.dimensions.output("120x130"));
 	app.flags[flag].match = function (val) {
 		return val.match(this.regex)
 	}

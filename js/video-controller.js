@@ -1,17 +1,37 @@
-function VideoCtrl($scope){
+var videoApp = angular.module('videoApp', []);
 
-	//$scope.header="Some poor Call Of Duty (COD) gameplay.";
-	//$scope.blurb="I find it weird how I can watch gameplay of others and in fact I find myself observing what I did during gameplay. Spotting areas of stupidity for example rushing at tanks with small arms.";
+//old syntax seems a bit too simple 
+//function VideoCtrl($scope){
 
-	$scope.header="I don't have time for Battlefield 4";
+	
+	/*$scope.header="I don't have time for Battlefield 4";
 	$scope.blurb="I wish I did !";
-	$scope.vidno="1";
+	$scope.vidno="1";*/
 
 
 
 //need to swap the video in depending on the video id given in the router...
 
-	$scope.swapVideo=function($vid,$vidno,$header,$blurb){
+	
+
+//}
+
+
+
+//alt syntax - 
+//angular.module('videoCtrl', [videoModel])
+
+ videoApp.controller('VideoCtrl', function($scope,$http) {
+   
+	$scope.header="Some poor Call Of Duty (COD) gameplay.";
+	$scope.blurb="I find it weird how I can watch gameplay of others and in fact I find myself observing what I did during gameplay. Spotting areas of stupidity for example rushing at tanks with small arms.";
+
+	$http.get('js/videoStore.json').success(function(data) {
+   		console.log('got videos loaded ok');
+    	//$scope.videos = data;
+  	});
+
+   $scope.swapVideo=function($vid,$vidno,$header,$blurb){
 		//alert("swap which video");
 		//can I access the video player ?
 		//alert(window.player);
@@ -27,4 +47,7 @@ function VideoCtrl($scope){
 
 	};
 
-}
+  });
+
+
+
