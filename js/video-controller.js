@@ -26,7 +26,7 @@ var videoApp = angular.module('videoApp', []);
 	$scope.header="Some poor Call Of Duty (COD) gameplay.";
 	$scope.blurb="I find it weird how I can watch gameplay of others and in fact I find myself observing what I did during gameplay. Spotting areas of stupidity for example rushing at tanks with small arms.";
 
-	$http.get('js/videoStore.json').success(function(data) {
+	$http.get('http://landed1.github.io/js/videoStore.js').success(function(data) {
    		console.log('got videos loaded ok');
     	//$scope.videos = data;
   	});
