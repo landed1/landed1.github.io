@@ -125,22 +125,22 @@
       <!-- Three columns of text below the carousel -->
       <div class="row">
         <div class="col-lg-4">
-          <img class="img-circle" data-src="holder.js/140x140" alt="Villa - kelly Rowland">
+          <img ng-src="images/{{videoObject.videos[0].thumb}}" alt="{{thumbAlt0}}">
           <h2>Giovanni and COD</h2>
           <p>Giovanni and COD','My very first gamer dj video - hope you like the track and that you want to share.</p>
-          <p><a class="btn btn-default" href="#" ng-click="swapVideo('OcCK9HkZWCg',2,'Giovanni and COD','My very first gamer dj video - hope you like the track and that you want to share.')" role="button">Load This &raquo;</a></p>
+          <p><a class="btn btn-default" href="#" ng-click="swapVideo(0)" role="button">Load This &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-          <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
+          <img ng-src="images/{{videoObject.videos[1].thumb}}" alt="{{thumbAlt1}}">
           <h2>Villa COD Black OPs and Kelly Rowland 'Work'.</h2>
           <p>I really had a decent finish to this game though when I do watch it back at times I wonder wtf!</p>
-          <p><a class="btn btn-default" ng-click="swapVideo('riDUCw4BuMQ',3,'Kelly Rowland and Villa','Inspiration from the gym radio - finally got a chance to add this track.')" role="button">Load This &raquo;</a></p>
+          <p><a class="btn btn-default" ng-click="swapVideo(1)" role="button">Load This &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-          <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
-          <h2>Villa COD Black OPs and Kelly Rowland 'Work'.</h2>
-          <p>I really had a decent finish to this game though when I do watch it back at times I wonder wtf!</p>
-          <p><a class="btn btn-default" role="button">Load This &raquo;</a></p>
+          <img ng-src="images/{{videoObject.videos[2].thumb}}" alt="{{thumbAlt2}}">
+          <h2>Battlefield 4 WTF.</h2>
+          <p>Poor play in battlefield \n try a new line (\\n) perhaps.</p>
+          <p><a class="btn btn-default" ng-click="swapVideo(2)" role="button">Load This &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
 
