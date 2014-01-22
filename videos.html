@@ -27,8 +27,10 @@
     <!--load ng -->
     <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-route.js"></script>
+    <script src="js/videoApp.js"></script>
     <script src="js/video-controller.js"></script>
-    <!--<script src="js/videoModel.js"></script>-->
+    
 
   </head>
 <!-- NAVBAR
@@ -149,9 +151,6 @@
     </div><!-- /.container -->
 
 
-    <div class="block calpushz"></div>
-
-
      <!-- FOOTER -->
       <footer class="footer toprounded">
         <p class="pull-right"><a href="#">Back to top</a></p>
@@ -181,7 +180,7 @@
         player = new YT.Player('player', {
           height: 'auto' ,
           width: '100%',
-          videoId:'8Z5gktEhQ7U',// 'M7lc1UVf-VE',
+          videoId:'8Z5gktEhQ7U',
           events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange

@@ -1,28 +1,8 @@
-var videoApp = angular.module('videoApp', []);
-
-//old syntax seems a bit too simple 
-//function VideoCtrl($scope){
-
-	
-	/*$scope.header="I don't have time for Battlefield 4";
-	$scope.blurb="I wish I did !";
-	$scope.vidno="1";*/
+var videoControllers = angular.module('videoControllers', []);
 
 
-
-//need to swap the video in depending on the video id given in the router...
-
-	
-
-//}
-
-
-
-//alt syntax - 
-//angular.module('videoCtrl', [videoModel])
-
- videoApp.controller('VideoCtrl', function($scope,$http) {
-
+videoControllers.controller('VideoCtrl', function($scope,$http) {
+	console.log('ini');
  	$scope.swapDisabled=true; //we didnt yet initialis and get the data properly yet : latency issues...
 
  	//set a defualt video for the initial load
