@@ -10,6 +10,10 @@ videoApp.config(['$routeProvider',
         templateUrl: 'partials/phone-list.html',
         controller: 'VideoCtrl'
       }).
+      when('oauth2callback.html', {
+        templateUrl: 'oauth2callback.html',
+        controller: 'VideoCtrl'
+      }).
       when('/login', {
         templateUrl: 'login.html',
         controller: 'AuthCtrl'
