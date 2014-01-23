@@ -9,7 +9,7 @@ videoControllers.controller('AuthCtrl', ['$scope', '$routeParams',
   	var scope=encodeURI("scope=https://www.googleapis.com/auth/youtube&");
   	var response_type=encodeURI("response_type=token");
   	str = "https://accounts.google.com/o/oauth2/auth?" + client_id + redirect_uri + scope + response_type
-  	window.open(str);
+  	//window.open(str);
   }]);
 
 
