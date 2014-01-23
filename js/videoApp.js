@@ -3,18 +3,18 @@ var videoApp = angular.module('videoApp', [
   'videoControllers'
 ]);
  
-/*videoApp.config(['$routeProvider',
+videoApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/notauthorised', {
         templateUrl: 'partials/phone-list.html',
         controller: 'VideoCtrl'
       }).
-      when('/phones/:phoneId', {
-        templateUrl: 'partials/phone-detail.html',
-        controller: 'VideoCtrl'
+      when('/login', {
+        templateUrl: 'login.html',
+        controller: 'AuthCtrl'
       }).
       otherwise({
         redirectTo: '/'
       });
-  }]);*/
+  }]);

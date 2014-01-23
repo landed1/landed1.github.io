@@ -1,8 +1,20 @@
 var videoControllers = angular.module('videoControllers', []);
 
 
+videoControllers.controller('AuthCtrl', ['$scope', '$routeParams',
+  function($scope, $routeParams) {
+
+    var client_id=encodeURI("client_id=77917340123.apps.googleusercontent.com&");
+  	var redirect_uri=encodeURI("redirect_uri=http://landed1.github.io/oauth2callback.html&");
+  	var scope=encodeURI("scope=https://www.googleapis.com/auth/youtube&");
+  	var response_type=encodeURI("response_type=token");
+  	str = "https://accounts.google.com/o/oauth2/auth?" + client_id + redirect_uri + scope + response_type
+  	window.open(str);
+  }]);
+
+
 videoControllers.controller('VideoCtrl', function($scope,$http) {
-	console.log('ini');
+
  	$scope.swapDisabled=true; //we didnt yet initialis and get the data properly yet : latency issues...
 
  	//set a defualt video for the initial load
@@ -29,20 +41,11 @@ videoControllers.controller('VideoCtrl', function($scope,$http) {
 		};
 
 		//enable the click function(s)
-		console.log("enabling");
+		
 		$scope.swapDisabled=false;
 
   	});
 
-   $scope.swapVideoOld=function($vid,$vidno,$header,$blurb){
-		var myPlayer=window.player;
-		myPlayer.loadVideoById({'videoId': $vid});
-		myPlayer.playVideo();
-		$scope.vidno=$vidno;
-		$scope.header=$header;
-		$scope.blurb=$blurb;
-
-	};
 
 	$scope.swapVideo=function(which){
 
