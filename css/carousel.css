@@ -2,11 +2,21 @@
 -------------------------------------------------- */
 /* Padding below the footer and lighter body text */
 
-.yt-image{
-
-
-
+.comments-ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
+
+.comments-ul li {
+  font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+  border-bottom: 1px solid #ccc;
+}
+ 
+.comments-ul li:last-child {
+  border: none;
+}
+
 #player{
   min-height:240px;
 }

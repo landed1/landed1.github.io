@@ -1,16 +1,95 @@
 var videoControllers = angular.module('videoControllers', []);
 
-
 videoControllers.controller('AuthCtrl', ['$scope', '$routeParams',
-  function($scope, $routeParams) {
+  function($scope, $routeParams,myService) {
+
+    myService.async().then(function(d) {
+      console.log('calling service' + d);
+      //$scope.data = d;
+    });
+
+  	//alert("helo");
 
     var client_id=encodeURI("client_id=77917340123.apps.googleusercontent.com&");
-  	var redirect_uri=encodeURI("redirect_uri=http://landed1.github.io/oauth2callback.html&");
+  	var redirect_uri=encodeURI("redirect_uri=http://www.gamerdj.net.gridhosted.co.uk/callback.html&");
+  	//var redirect_uri="redirect_uri=http://www.gamerdj.net.gridhosted.co.uk/oauth2callback&";
   	var scope=encodeURI("scope=https://www.googleapis.com/auth/youtube&");
   	var response_type=encodeURI("response_type=token");
   	str = "https://accounts.google.com/o/oauth2/auth?" + client_id + redirect_uri + scope + response_type
-  	//window.open(str);
+  	console.log("login to "+str);
+  	var win = window.open(str,"windowname1", 'width=800, height=600');
+
+
+  	var pollTimer   =   window.setInterval(function() { 
+  		//console.log('poll '+win.document.URL);
+                try {
+                    //console.log('trying');
+                    if (win.document.URL.indexOf("callback.html") != -1) {
+                    	//console.log(win.document.URL);
+                    	//console.log(win);
+                    	
+                    	//#access_token=ya29.1.AADtN_VF0lVfakRQj6fehwsxr_s4RVVFnWH73O5YWK0hBWjt_EG_oI75WYOT5c1I&token_type=Bearer&expires_in=3600
+                     
+                        //var myToken=;
+                      
+                        validateToken(getTokenFromString(win.document.URL));
+
+                        window.clearInterval(pollTimer);
+                        //var url =   win.document.URL;
+                        //console.log(url);
+                        //acToken =   gup(url, 'access_token');
+                        //tokenType = gup(url, 'token_type');
+                        //expiresIn = gup(url, 'expires_in');
+                        win.close();
+                    }
+                } catch(e) {
+                }
+            }, 100);
+        
+
+        function validateToken(token) {
+          //https://developers.google.com/accounts/docs/OAuth2UserAgent#validatetoken
+          //https://www.googleapis.com/oauth2/v1/tokeninfo
+			     console.log(token);
+        }
+
+
+        function getTokenFromString(str){
+
+          var fStr=str.split("&");
+          var sStr=fStr[0].split("#");
+          var t=sStr[1].split("=")[1];
+          return t;
+          //console.log();
+
+        }
+
+
+        //credits: http://www.netlobo.com/url_query_string_javascript.html
+        function gup(url, name) {
+        	console.log('gup called');
+        	//console.log(url.hash);
+
+            name = name.replace(/[[]/,"\[").replace(/[]]/,"\]");
+            //console.log(name);
+            var regexS = "[\?&]"+name+"=([^&#]*)";
+            var regex = new RegExp( regexS );
+            var results = regex.exec( url );
+            //console.log(results);
+            if( results == null )
+                return "";
+            else
+                return results[1];
+        }
+
+
   }]);
+
+videoControllers.controller('CommentsCtrl',['$scope','$routeParams',
+	function($scope,$routeParams){
+		// /alert('loading comments');
+	}
+]);
 
 
 videoControllers.controller('VideoCtrl', function($scope,$http) {

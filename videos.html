@@ -6,6 +6,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+
+<!--
+
+
+<meta name="google-signin-clientid" content="77917340123.apps.googleusercontent.com" />
+<meta name="google-signin-scope" content="https://www.googleapis.com/auth/plus.login" />
+<meta name="google-signin-requestvisibleactions" content="http://schemas.google.com/AddActivity" />
+<meta name="google-signin-cookiepolicy" content="single_host_origin" />
+
+-->
+<script type="text/javascript">
+ /*(function() {
+   var po = document.createElement('script');
+   po.type = 'text/javascript'; po.async = true;
+   po.src = 'https://apis.google.com/js/client:plusone.js?onload=render';
+   var s = document.getElementsByTagName('script')[0];
+   s.parentNode.insertBefore(po, s);
+ })();
+
+*/
+
+
+
+   /* Executed when the APIs finish loading */
+ /*function render() {
+
+   // Additional params including the callback, the rest of the params will
+   // come from the page-level configuration.
+   var additionalParams = {
+     'callback': signinCallback
+   };
+
+   // Attach a click listener to a button to trigger the flow.
+   var signinButton = document.getElementById('signinButton');
+   var signOutButton = document.getElementById('signOutButton');
+
+   signOutButton.setAttribute('style', 'display:none');
+
+   signinButton.addEventListener('click', function() {
+     gapi.auth.signIn(additionalParams); // Will use page level configuration
+   });
+   signOutButton.addEventListener('click', function() {
+    gapi.auth.signOut();
+   });
+
+   
+ }*/
+/*
+
+function signinCallback(authResult) {
+  if (authResult['status']['signed_in']) {
+    // Update the app to reflect a signed in user
+    // Hide the sign-in button now that the user is authorized, for example:
+    document.getElementById('signinButton').setAttribute('style', 'display:none');
+    document.getElementById('signOutButton').setAttribute('style', 'display:block');
+    console.log(authResult);
+
+    gapi.interactivepost.render('sharePost', options);
+  } else {
+    // Update the app to reflect a signed out user
+    // Possible error values:
+    //   "user_signed_out" - User is signed-out
+    //   "access_denied" - User denied access to your app
+    //   "immediate_failed" - Could not automatically log in the user
+    console.log('Sign-in state: ' + authResult['error']);
+    document.getElementById('signinButton').setAttribute('style', 'display:block');
+    document.getElementById('signOutButton').setAttribute('style', 'display:none');
+  }
+}*/
+
+</script>
+
+
+
+
     <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
 
     <title>A small demonstrative website.</title>
@@ -93,11 +168,35 @@
         </div>
         <div class="col-md-5">
           <div id="player" class="yt-image"></div>
+          <div id="commments" ng-controller="CommentsCtrl">
+            <ul class="comments-ul">
+              <li>Comment 1</li>
+              <li>Comment 2</li>
+            </ul>
+          </div>
+            <!--<button
+              class="g-interactivepost"
+              data-contenturl="http://www.gamerdj.net.gridhosted.co.uk/videos.html"
+              data-contentdeeplinkid="/pages"
+              data-clientid="77917340123.apps.googleusercontent.com"
+              data-cookiepolicy="single_host_origin"
+              data-prefilltext="I JUST LURVE GAMERDJ !"
+              data-calltoactionlabel="PIN_IT"
+              data-calltoactionurl="http://www.gamerdj.net.gridhosted.co.uk/videos.html"
+              data-calltoactiondeeplinkid="/pages/create">
+              Tell your friends
+            </button>-->
         </div>
+        
+
+
       </div>
 
-      <div><a href="#/login/">Login to YouTube</a></div>
+      <div><a href="#/login">Login to YouTube</a>
+      <div id='uName'>Welcome  </div>
+      <img src='' id='imgHolder'/></div>
       <div><a href="oauth2callback.html#access_token=ya29.1.AADtN_VZIESQ_I7qGrpaYHtWUOPz3CHbqz_RP1V0mRyxSGzWjJItHi-fDLUfkGg&token_type=Bearer&expires_in=3600">Simulate youtube return url with accept app login..</a></div>
+      <!--<button id="signinButton">Sign in with Google</button><button id="signOutButton">Sign Out</button>-->
       <div ng-view>ng-view here</div>
 
       <hr class="featurette-divider">
@@ -184,7 +283,7 @@
         player = new YT.Player('player', {
           height: 'auto' ,
           width: '100%',
-          videoId:'8Z5gktEhQ7U',
+          videoId:'riDUCw4BuMQ',
           events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
@@ -194,7 +293,9 @@
 
       // 4. The API will call this function when the video player is ready.
       function onPlayerReady(event) {
-        event.target.playVideo();
+        //event.target.playVideo();
+        //try and now load the comments
+       // console.log('loading comments via controller');
       }
 
       // 5. The API calls this function when the player's state changes.
@@ -212,6 +313,35 @@
       }
     </script>
 
+
+
+<!-- Place this asynchronous JavaScript just before your </body> tag -->
+  <!--  <script type="text/javascript">
+      (function() {
+       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+       po.src = 'https://apis.google.com/js/client:plusone.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+     })();
+    </script>
+
+
+
+
+<script type="text/javascript">
+  var options = {
+    contenturl: 'http://www.gamerdj.net.gridhosted.co.uk/videos.html',
+    contentdeeplinkid: '/pages',
+    clientid: '77917340123.apps.googleusercontent.com',
+    cookiepolicy: 'single_host_origin',
+    prefilltext: 'I want to share this video to show my support for this game !',
+    calltoactionlabel: 'PIN_IT',
+    calltoactionurl: 'http://plus.google.com/pages/create',
+    calltoactiondeeplinkid: '/pages/create'
+  };
+  // Call the render method when appropriate within your app to display
+  // the button.
+  
+</script>-->
 
 
 
