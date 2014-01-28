@@ -1,12 +1,7 @@
 var videoControllers = angular.module('videoControllers', []);
 
-videoControllers.controller('AuthCtrl', ['$scope', '$routeParams',
-  function($scope, $routeParams,myService) {
-
-    myService.async().then(function(d) {
-      console.log('calling service' + d);
-      //$scope.data = d;
-    });
+videoControllers.controller('AuthCtrl', ['$scope', '$routeParams','myService',
+  function($scope, $routeParams, myService) {
 
   	//alert("helo");
 
@@ -47,10 +42,13 @@ videoControllers.controller('AuthCtrl', ['$scope', '$routeParams',
             }, 100);
         
 
-        function validateToken(token) {
-          //https://developers.google.com/accounts/docs/OAuth2UserAgent#validatetoken
-          //https://www.googleapis.com/oauth2/v1/tokeninfo
-			     console.log(token);
+          function validateToken(token) {
+            //https://developers.google.com/accounts/docs/OAuth2UserAgent#validatetoken
+            myService.async('https://www.googleapis.com/oauth2/v1/tokeninfo?access_token='+token).then(function(d) {
+              //console.log(d);/*d= {issued_to: "77917340123.apps.googleusercontent.com", audience: "77917340123.apps.googleusercontent.com", scope: "https://www.googleapis.com/auth/youtube", expires_in: 3600, access_type: "online"…}*/
+            $scope.data = d;
+          });
+			    // console.log(token);
         }
 
 
@@ -62,24 +60,6 @@ videoControllers.controller('AuthCtrl', ['$scope', '$routeParams',
           return t;
           //console.log();
 
-        }
-
-
-        //credits: http://www.netlobo.com/url_query_string_javascript.html
-        function gup(url, name) {
-        	console.log('gup called');
-        	//console.log(url.hash);
-
-            name = name.replace(/[[]/,"\[").replace(/[]]/,"\]");
-            //console.log(name);
-            var regexS = "[\?&]"+name+"=([^&#]*)";
-            var regex = new RegExp( regexS );
-            var results = regex.exec( url );
-            //console.log(results);
-            if( results == null )
-                return "";
-            else
-                return results[1];
         }
 
 
