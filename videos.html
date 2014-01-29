@@ -168,10 +168,16 @@ function signinCallback(authResult) {
         </div>
         <div class="col-md-5">
           <div id="player" class="yt-image"></div>
-          <div id="commments" ng-controller="CommentsCtrl">
+          <div id="commments">
+            <form name="input" ng-submit="comment()">
+              <textarea ng-model="commentText" required rows="3" cols="50" placeholder="Submit your comments direct onto youtube for this video here !"></textarea>
+              <input class="btn btn-sm btn-primary" type="submit" value="{{SUBMIT_COMMENT}}">
+            </form>
             <ul class="comments-ul">
-              <li>Comment 1</li>
-              <li>Comment 2</li>
+              <li ng-repeat="comment in comments">
+                {{comment.author[0].name.$t}}
+                <p>{{comment.content.$t}}</p>
+              </li>
             </ul>
           </div>
             <!--<button

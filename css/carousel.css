@@ -2,6 +2,19 @@
 -------------------------------------------------- */
 /* Padding below the footer and lighter body text */
 
+.btn{
+  margin-top: 3px;
+
+}
+
+textarea {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+  width: 100%;
+}
+
 .comments-ul{
   list-style: none;
   margin: 0;
@@ -9,7 +22,7 @@
 }
 
 .comments-ul li {
-  font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+  font: 10px/1.5 Helvetica, Verdana, sans-serif;
   border-bottom: 1px solid #ccc;
 }
  
