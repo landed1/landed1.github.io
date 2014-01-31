@@ -42,23 +42,37 @@ videoControllers.controller('VideoCtrl', function($scope,$http,myGetService,myAu
 
     //console.log('current video id is ' + $scope.currentVideoId);
 
-     //myGetService.async('https://gdata.youtube.com/feeds/api/videos/'+ $scope.currentVideoId +'/comments?alt=json').then(function(d){
-     myGetService.async('https://gdata.youtube.com/feeds/api/videos/EOdYfekfh1U/comments?alt=json').then(function(d){
+    $scope.renderComments();
+
+  	});
+  
+  $scope.fRefreshVideo=function(which){
+
+      $scope.currentVideoId=$scope.videoObject.videos[which].vId;
+
+  }
+  $scope.renderComments=function(){
+
+    console.log('render comments for '+ $scope.currentVideoId);
+
+      myGetService.async('https://gdata.youtube.com/feeds/api/videos/'+ $scope.currentVideoId +'/comments?alt=json').then(function(d){
+        //myGetService.async('https://gdata.youtube.com/feeds/api/videos/EOdYfekfh1U/comments?alt=json').then(function(d){
            //console.log(d.feed.entry);
            //if no comments we will need to provide a default comment or fallback..
 
-           if(!d.feed.entry){
+          if(!d.feed.entry){
+            //console.log('i reste the comments');
              $scope.comments=[];
            }else{
             $scope.comments=d.feed.entry;
            }
           
-          
         if($scope.comments.length > 7)    $scope.comments.length=7;
       
       });
 
-  	});
+
+  }
 
 
   $scope.comment=function(){
@@ -101,6 +115,8 @@ videoControllers.controller('VideoCtrl', function($scope,$http,myGetService,myAu
 
     //todo - update the comments too !
     $scope.which=which;
+    $scope.fRefreshVideo(which);
+    $scope.renderComments();
 
 		if(!$scope.swapDisabled){
 
