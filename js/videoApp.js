@@ -24,29 +24,20 @@ videoApp.config(['$routeProvider',
 videoApp.factory('myPostService', function($http) {  
   var myPostService={
 
-    async: function(url,leToken) {
+    async: function(url,leToken,leXml) {
       //console.log('post async function');
-       $http({
+      //dev key for version 2 = AI39si63DgqpftpnvTv4DeHrCXa2dkDUV6-txA-7o2isewPSSg4DyYS6BpkW7SBiJmFuR_-4AF6QtxRW-c0M-3WnMiMXQJs7Sw
+       var promise=$http({
             url: url,
             method: "POST",
-            data: "",
-            headers: {'Content-Type': 'JSON','Bearer':leToken}
+            data: leXml,
+            //headers: {'Content-Type': 'application/atom+xml','Authorization':' Bearer ' +leToken, 'Host': 'gdata.youtube.com', 'GData-Version':'2','X-GData-Key': 'key=AI39si63DgqpftpnvTv4DeHrCXa2dkDUV6-txA-7o2isewPSSg4DyYS6BpkW7SBiJmFuR_-4AF6QtxRW-c0M-3WnMiMXQJs7Sw'}
+            headers: {'Content-Type': 'application/atom+xml','Authorization':' Bearer ' +leToken, 'GData-Version':'2','X-GData-Key': 'key=AI39si63DgqpftpnvTv4DeHrCXa2dkDUV6-txA-7o2isewPSSg4DyYS6BpkW7SBiJmFuR_-4AF6QtxRW-c0M-3WnMiMXQJs7Sw'}
         }).success(function(data) {
-            console.log('data '+data);
-
-            if (!data.success) {
-              // if not successful, bind errors to error variables
-                $scope.errorName = data.errors.name;
-                $scope.errorSuperhero = data.errors.superheroAlias;
-            } else {
-              // if successful, bind success message to message
-                $scope.message = data.message;
-            }
+            if (!data.success) {console.log('error with posting comment '+data);} 
         });
-
-        //do more...or will the above send ?
       // Return the promise to the controller
-      //return promise;
+      return promise;
     }
   };
   return myPostService;
@@ -98,10 +89,10 @@ videoApp.factory('myAuthService', function($http,myGetService) {
                              
                               var tok=getTokenFromString(win.document.URL);
                               validateToken(tok);
-                              //console.log(validateToken);
+                              //console.log('validateToken');
                               //validateToken();
                               window.clearInterval(pollTimer);
-                              win.close();
+                              if(win) win.close();
                             }
                         } catch(e) {
                         }
@@ -113,14 +104,12 @@ videoApp.factory('myAuthService', function($http,myGetService) {
                // console.log(d);/*d= {issued_to: "77917340123.apps.googleusercontent.com", audience: "77917340123.apps.googleusercontent.com", scope: "https://www.googleapis.com/auth/youtube", expires_in: 3600, access_type: "online"…}*/
                 d.token=token; // as a convenience add the token so the controller can get it on the data returned.
                 callback(d,type);
-
                 //check audience matches my app id : 77917340123.apps.googleusercontent.com
                 //($scope.data.issued_to == "77917340123.apps.googleusercontent.com" ? return true : return false);
                 });
       }
 
       function getTokenFromString(str){
-
               var fStr=str.split("&");
               var sStr=fStr[0].split("#");
               var t=sStr[1].split("=")[1];
@@ -131,13 +120,6 @@ videoApp.factory('myAuthService', function($http,myGetService) {
 
   };
 
-
-
   return myAuthService;
 });
 
-videoApp.factory('Notify',function(){
-
-return {message:"saadsasd"};
-
-});
