@@ -29,6 +29,7 @@
     <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-sanitize.js"></script>
     <script src="js/videoApp.js"></script>
     <script src="js/video-controller.js"></script>
     
@@ -117,7 +118,7 @@
             <ul class="comments-ul">
               <li ng-repeat="comment in comments">
                 {{comment.author[0].name.$t}}
-                <p>{{comment.content.$t}}</p>
+                <p ng-bind-html="comment.content.$t | linky:'_blank'">{{comment.content.$t}}</p>
               </li>
             </ul>
           </div>
