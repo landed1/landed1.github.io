@@ -1,6 +1,7 @@
 var videoApp = angular.module('videoApp', [
   'ngRoute',
-  'videoControllers'
+  'videoControllers',
+  'ngSanitize'
 ]);
  
 videoApp.config(['$routeProvider',
