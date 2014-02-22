@@ -1,0 +1,15 @@
+<script>
+
+function getTokenFromString(str){
+              var fStr=str.split("&");
+              var sStr=fStr[0].split("#");
+              var t=sStr[1].split("=")[1];
+              return t;
+}
+
+var tok=getTokenFromString(window.document.URL);
+
+window.opener.postMessage(tok,"http://gamerdj.net.gridhosted.co.uk/");
+self.close();
+
+</script>

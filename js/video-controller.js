@@ -1,13 +1,15 @@
 var videoControllers = angular.module('videoControllers', []);
 
 
-videoControllers.controller('VideoCtrl', function($scope,$http,myGetService,myAuthService,myPostService) {
+videoControllers.controller('VideoCtrl', function($scope,$timeout,$http,myGetService,myAuthService,myPostService) {
 
   $scope.Gauth=false; //user flag set to indicate if the user has allowed access to Google during the session.
 
   $scope.SUBMIT_COMMENT="Login and Submit";
 
  	$scope.swapDisabled=true; //we didnt yet initialise and get the data properly yet : latency issues...
+
+  $scope.commentEnabled=false;
  	
  	$scope.ix=0; //set a defualt video for the initial load
    
@@ -51,9 +53,14 @@ videoControllers.controller('VideoCtrl', function($scope,$http,myGetService,myAu
       $scope.currentVideoId=$scope.videoObject.videos[which].vId;
 
   }
+
+  $scope.clearComments=function(){
+    $scope.comments=[];
+  }
+
   $scope.renderComments=function(){
 
-    console.log('render comments for '+ $scope.currentVideoId);
+    //console.log('render comments for '+ $scope.currentVideoId);
 
       myGetService.async('https://gdata.youtube.com/feeds/api/videos/'+ $scope.currentVideoId +'/comments?alt=json').then(function(d){
         //myGetService.async('https://gdata.youtube.com/feeds/api/videos/EOdYfekfh1U/comments?alt=json').then(function(d){
@@ -71,13 +78,12 @@ videoControllers.controller('VideoCtrl', function($scope,$http,myGetService,myAu
       
       });
 
-
   }
 
 
   $scope.comment=function(){
     //console.log('custom form - run once [TODO need to block]');
-    $scope.comment=null; // quick maybe decent hack blocking button after first use.
+    $scope.commentEnabled=true;
     //check to see if user has already authorised - this will be useful all over
     if( ! $scope.Gauth){
         myAuthService.authorise($scope.authorisedDone,'comment'); //will deal with saving user agreement later not sure how this is handled.
@@ -106,8 +112,15 @@ videoControllers.controller('VideoCtrl', function($scope,$http,myGetService,myAu
     //console.log(postXml);
     myPostService.async('https://gdata.youtube.com/feeds/api/videos/'+$scope.videoObject.videos[$scope.which].vId+'/comments',$scope.token,postXml).then(function (response) {
       // alert('promise');
-      $scope.commentText="Your comment has been added - thanks.";
-      //TODO - refresh the new comments so they can be seen.
+      $scope.commentText="Your comment has been added - thanks please wait a good few seconds !";
+      $scope.commentEnabled=false; //re enable the submit buttom
+      
+      $timeout(function() {
+        $scope.clearComments();
+        $scope.renderComments();
+       
+    }, 10000);
+
     });
   }
 

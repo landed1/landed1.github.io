@@ -1,30 +1,11 @@
-<IfModule mod_rewrite.c>
-        RewriteEngine On
-        RewriteBase /
-
-        # Removes index.php from ExpressionEngine URLs
-        #RewriteCond %{THE_REQUEST} ^GET.*index\.php [NC]
-        #RewriteCond %{REQUEST_URI} !/system/.* [NC]
-        #RewriteRule (.*?)index\.php/*(.*) /$1$2 [R=301,NE,L]
-
-        # Directs all EE web requests through the site index file
-        #RewriteCond %{REQUEST_FILENAME} !-f
-        #RewriteCond %{REQUEST_FILENAME} !-d
-        #RewriteRule ^(.*)$ /index.php/$1 [L]
- 
-
-
-        #RewriteRule ^oauth2callback$ /videos.html\#/oauth2callback [NE,L,R,QSA]
-
-
-
-
-</IfModule>
-
-#ok the if module messes things up ! lets keep it simple...now its just stripping the hash...
+<FilesMatch "\.(html)$">
+FileETag None
+<ifModule mod_headers.c>
+Header set Access-Control-Allow-Origin: https://accounts.google.com
+</ifModule>
+</FilesMatch>
 
 RewriteEngine On
 RewriteBase /
-
 
 RewriteRule ^oauth2callback$ /videos.html#/oauth2callback [NE,L,R,QSA]

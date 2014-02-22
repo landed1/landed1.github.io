@@ -50,7 +50,7 @@ videoApp.factory('myGetService', function($http) {
    
     async: function(url) {
        //console.log($http.defaults.headers);
-      //console.log("GET : "+url);
+      console.log("GET : "+url);
       // $http returns a promise, which has a then function, which also returns a promise
       var promise = $http.get(url).then(function (response) {
         // The then function here is an opportunity to modify the response
@@ -72,32 +72,28 @@ videoApp.factory('myAuthService', function($http,myGetService) {
     authorise: function(callback,type) {
 
             var client_id=encodeURI("client_id=77917340123.apps.googleusercontent.com&");
-            var redirect_uri=encodeURI("redirect_uri=http://www.gamerdj.net.gridhosted.co.uk/callback.html&");
+            var redirect_uri=encodeURI("redirect_uri=http://www.gamerdj.net.gridhosted.co.uk/lecallback.html&");
             //var redirect_uri="redirect_uri=http://www.gamerdj.net.gridhosted.co.uk/oauth2callback&";
             var scope=encodeURI("scope=https://www.googleapis.com/auth/youtube&");
             var response_type=encodeURI("response_type=token");
             str = "https://accounts.google.com/o/oauth2/auth?" + client_id + redirect_uri + scope + response_type
-            //console.log("login to "+str);
+            //console.log(str);
             var win = window.open(str,"windowname1", 'width=800, height=600');
 
-            var pollTimer   =   window.setInterval(function() { 
-              //console.log('poll '+win.document.URL);
-                        try {
-                            if (win.document.URL.indexOf("callback.html") != -1) {
-                              //console.log(win.document.URL+ " and " +win.document.URL.indexOf("callback.html"));
-                              //#access_token=ya29.1.AADtN_VF0lVfakRQj6fehwsxr_s4RVVFnWH73O5YWK0hBWjt_EG_oI75WYOT5c1I&token_type=Bearer&expires_in=3600
-                              //var myToken=;
-                             
-                              var tok=getTokenFromString(win.document.URL);
-                              validateToken(tok);
-                              //console.log('validateToken');
-                              //validateToken();
-                              window.clearInterval(pollTimer);
-                              if(win) win.close();
-                            }
-                        } catch(e) {
-                        }
-            }, 100);
+            window.addEventListener("message", receiveMessage, true);
+            function receiveMessage(event){ 
+
+              //console.log(event.origin+" : "+'http://gamerdj.net.gridhosted.co.uk')
+
+              if(event.origin==='http://www.gamerdj.net.gridhosted.co.uk'){
+
+                validateToken(event.data);
+
+              }
+                else{return}
+
+            }
+            
 
       function validateToken(token) {
                 //https://developers.google.com/accounts/docs/OAuth2UserAgent#validatetoken
@@ -108,13 +104,6 @@ videoApp.factory('myAuthService', function($http,myGetService) {
                 //check audience matches my app id : 77917340123.apps.googleusercontent.com
                 //($scope.data.issued_to == "77917340123.apps.googleusercontent.com" ? return true : return false);
                 });
-      }
-
-      function getTokenFromString(str){
-              var fStr=str.split("&");
-              var sStr=fStr[0].split("#");
-              var t=sStr[1].split("=")[1];
-              return t;
       }
 
     }

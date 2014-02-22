@@ -32,7 +32,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-sanitize.js"></script>
     <script src="js/videoApp.js"></script>
     <script src="js/video-controller.js"></script>
-    
+
+    <script src="js/corsRequest.js"></script>
 
   </head>
 <!-- NAVBAR
@@ -90,7 +91,7 @@
 
       <div class="row featurette">
         <div class="col-md-4">
-         <p class="lead">Angular is handling binding and single page design (norefresh) with data coming from Youtube API.</p>
+         <p class="lead">Angular is handling binding and single page design (norefresh) with data coming from Youtube API.</p><p>A quick CORS test <a href="#" onclick="makeCorsRequest(); return false;">click here >></a></p>
         </div>
         <div class="col-md-4">
           <p class="lead">You can try it out by submitting a comment to the videos - the blue button handles you through the flow, no need to log in or register on this website.</p>
@@ -112,7 +113,7 @@
           <div id="commments">
             <form name="input" ng-submit="comment()">
               <textarea ng-model="commentText" required rows="3" cols="50" placeholder="Submit your comments direct onto youtube for this video here !"></textarea>
-              <input class="btn btn-sm btn-primary" type="submit" value="{{SUBMIT_COMMENT}}">
+              <input class="btn btn-sm btn-primary" ng-disabled="commentEnabled" type="submit" value="{{SUBMIT_COMMENT}}">
             </form>
             <p style="margin-top:10px;">Latest Comments</p>
             <ul class="comments-ul">

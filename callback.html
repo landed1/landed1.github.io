@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" ng-app>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Callback</title>
-    <!--load ng -->
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>-->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-route.js"></script>
-    <script src="js/callback.js"></script>
-  </head>
-  <body ng-controller="CallbackCtrl">
-  </body>
-  </html>
+<head>
+<meta charset="utf-8">
+<title>Callback</title>
+<script>
+
+    function getTokenFromString(str){
+                  var fStr=str.split("&");
+                  var sStr=fStr[0].split("#");
+                  var t=sStr[1].split("=")[1];
+                  return t;
+    }
+
+    var tok=getTokenFromString(window.document.URL);
+
+    window.opener.postMessage(tok,"http://gamerdj.net.gridhosted.co.uk/");
+    self.close();
+
+</script>
+</head>
+<body>
+</body>
+</html>
