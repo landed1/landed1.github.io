@@ -10,6 +10,8 @@ videoControllers.controller('VideoCtrl', function($scope,$timeout,$http,myGetSer
  	$scope.swapDisabled=true; //we didnt yet initialise and get the data properly yet : latency issues...
 
   $scope.commentEnabled=false;
+
+  $scope.debug='this is debug info ignore pls';
  	
  	$scope.ix=0; //set a defualt video for the initial load
    
@@ -61,8 +63,8 @@ videoControllers.controller('VideoCtrl', function($scope,$timeout,$http,myGetSer
   $scope.renderComments=function(){
 
     //console.log('render comments for '+ $scope.currentVideoId);
-
-      myGetService.async('https://gdata.youtube.com/feeds/api/videos/'+ $scope.currentVideoId +'/comments?alt=json').then(function(d){
+      var cachebuster = Math.round(new Date().getTime() / 1000);
+      myGetService.async('https://gdata.youtube.com/feeds/api/videos/'+ $scope.currentVideoId +'/comments?alt=json'+'&cb='+cachebuster).then(function(d){
         //myGetService.async('https://gdata.youtube.com/feeds/api/videos/EOdYfekfh1U/comments?alt=json').then(function(d){
            //console.log(d.feed.entry);
            //if no comments we will need to provide a default comment or fallback..
@@ -90,21 +92,13 @@ videoControllers.controller('VideoCtrl', function($scope,$timeout,$http,myGetSer
     }
     else{
         //we should already have a token to use from previous - [TODO]
+        $scope.postComment();
     }
   }
 
+  $scope.postComment=function(){
 
-
-  $scope.authorisedDone=function(leData,type){
-    //console.log('auth done ready to continue, type was '+type);
-    //console.log(leData);
-    $scope.token=leData.token;
-    $scope.Gauth=true;
-    
-    if (!$scope.which) $scope.which =0; //default to 0 if unset
-    //if (!$scope.currentVideoId) $scope.which =0; 
-
-    //console.log('current video id is '+$scope.videoObject.videos[$scope.which].vId);
+        //console.log('current video id is '+$scope.videoObject.videos[$scope.which].vId);
     //todo - switch based on type for now we just have the one.
     //console.log($scope.commentText);
     //https://gdata.youtube.com/feeds/api/videos/ngeSUixDEyI/comments
@@ -122,6 +116,21 @@ videoControllers.controller('VideoCtrl', function($scope,$timeout,$http,myGetSer
     }, 10000);
 
     });
+
+  }
+
+  $scope.authorisedDone=function(leData,type){
+    $scope.debug='auth done ready to continue, type was '+type+" and Gauth is "+$scope.Gauth;
+    //console.log('auth done ready to continue, type was '+type+" and Gauth is "+$scope.Gauth);
+    //console.log(leData);
+    $scope.token=leData.token;
+    $scope.Gauth=true;
+    
+    if (!$scope.which) $scope.which =0; //default to 0 if unset
+    //if (!$scope.currentVideoId) $scope.which =0; 
+
+    $scope.postComment();
+
   }
 
 	$scope.swapVideo=function(which){

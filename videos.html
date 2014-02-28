@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -39,10 +39,10 @@
 <!-- NAVBAR
 ================================================== -->
   <body ng-controller="VideoCtrl">
-    <div class="navbar-wrapper-video" >
+    <div class="navbar-wrapper" >
       <div class="container">
 
-        <div class=" navbar-inverse centererer bottomrounded" role="navigation">
+        <div class=" navbar-inverse navbar-static-top" role="navigation">
           <div class="container">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -102,11 +102,12 @@
       </div>
 
       <hr class="featurette-divider">
-
+<p class="">{{debug}}</p>
       <div class="row featurette">
         <div class="col-md-7">
           <h2>Video {{vidno}}. <span class="text-muted">{{header}}</span></h2>
           <p class="lead">{{blurb}}</p>
+          
         </div>
         <div class="col-md-5">
           <div id="player" class="yt-image"></div>

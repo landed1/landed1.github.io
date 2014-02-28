@@ -50,11 +50,11 @@ videoApp.factory('myGetService', function($http) {
    
     async: function(url) {
        //console.log($http.defaults.headers);
-      console.log("GET : "+url);
+      //console.log("myGetService GET : "+url);
       // $http returns a promise, which has a then function, which also returns a promise
       var promise = $http.get(url).then(function (response) {
         // The then function here is an opportunity to modify the response
-        //console.log(response);
+        console.log(response.data);
         // The return value gets picked up by the then in the controller.
         return response.data;
       });
@@ -72,7 +72,7 @@ videoApp.factory('myAuthService', function($http,myGetService) {
     authorise: function(callback,type) {
 
             var client_id=encodeURI("client_id=77917340123.apps.googleusercontent.com&");
-            var redirect_uri=encodeURI("redirect_uri=http://www.gamerdj.net.gridhosted.co.uk/lecallback.html&");
+            var redirect_uri=encodeURI("redirect_uri=http://gamerdj.net.gridhosted.co.uk/lecallback.html&");
             //var redirect_uri="redirect_uri=http://www.gamerdj.net.gridhosted.co.uk/oauth2callback&";
             var scope=encodeURI("scope=https://www.googleapis.com/auth/youtube&");
             var response_type=encodeURI("response_type=token");
@@ -82,11 +82,11 @@ videoApp.factory('myAuthService', function($http,myGetService) {
 
             window.addEventListener("message", receiveMessage, true);
             function receiveMessage(event){ 
+              //console.log('gotit '+event.data);
+              //alert('postMessage received ok');
+              console.log(event.origin+" : "+'http://gamerdj.net.gridhosted.co.uk')
 
-              //console.log(event.origin+" : "+'http://gamerdj.net.gridhosted.co.uk')
-
-              if(event.origin==='http://www.gamerdj.net.gridhosted.co.uk'){
-
+              if(event.origin==='http://gamerdj.net.gridhosted.co.uk' || event.origin==='http://www.gamerdj.net.gridhosted.co.uk'){
                 validateToken(event.data);
 
               }
@@ -96,9 +96,10 @@ videoApp.factory('myAuthService', function($http,myGetService) {
             
 
       function validateToken(token) {
+        //console.log('validate against '+token)
                 //https://developers.google.com/accounts/docs/OAuth2UserAgent#validatetoken
                 myGetService.async('https://www.googleapis.com/oauth2/v1/tokeninfo?access_token='+token).then(function(d) {
-               // console.log(d);/*d= {issued_to: "77917340123.apps.googleusercontent.com", audience: "77917340123.apps.googleusercontent.com", scope: "https://www.googleapis.com/auth/youtube", expires_in: 3600, access_type: "online"…}*/
+                console.log(d);/*d= {issued_to: "77917340123.apps.googleusercontent.com", audience: "77917340123.apps.googleusercontent.com", scope: "https://www.googleapis.com/auth/youtube", expires_in: 3600, access_type: "online"…}*/
                 d.token=token; // as a convenience add the token so the controller can get it on the data returned.
                 callback(d,type);
                 //check audience matches my app id : 77917340123.apps.googleusercontent.com
