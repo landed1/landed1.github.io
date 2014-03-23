@@ -29,11 +29,13 @@ videoControllers.controller('VideoCtrl', function($scope,$timeout,$http,myGetSer
     	$scope.thumb = "images/" + $scope.videoObject.videos[$scope.ix].thumb;
 
     	//now enable the swap video feed to be active...
-    	for (var i = 3 - 1; i >= 0; i--) {
+    	for (var i = $scope.videoObject.videos.length - 1; i >= 0; i--) {
 			//console.log("i = "+i);
 			var s=$scope.videoObject.videos[i].thumb;
 			$scope["thumbAlt"+i]=$scope.videoObject.videos[i].thumb.substring(0, s.length - 4);
-		  };
+      //console.log($scope["thumbAlt"+i]);
+	};
+
 
 		//enable the click function(s)
 		

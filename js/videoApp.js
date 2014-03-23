@@ -54,7 +54,7 @@ videoApp.factory('myGetService', function($http) {
       // $http returns a promise, which has a then function, which also returns a promise
       var promise = $http.get(url).then(function (response) {
         // The then function here is an opportunity to modify the response
-        console.log(response.data);
+        //console.log(response.data);
         // The return value gets picked up by the then in the controller.
         return response.data;
       });
@@ -84,7 +84,7 @@ videoApp.factory('myAuthService', function($http,myGetService) {
             function receiveMessage(event){ 
               //console.log('gotit '+event.data);
               //alert('postMessage received ok');
-              console.log(event.origin+" : "+'http://gamerdj.net.gridhosted.co.uk')
+              //console.log(event.origin+" : "+'http://gamerdj.net.gridhosted.co.uk')
 
               if(event.origin==='http://gamerdj.net.gridhosted.co.uk' || event.origin==='http://www.gamerdj.net.gridhosted.co.uk'){
                 validateToken(event.data);
@@ -99,7 +99,7 @@ videoApp.factory('myAuthService', function($http,myGetService) {
         //console.log('validate against '+token)
                 //https://developers.google.com/accounts/docs/OAuth2UserAgent#validatetoken
                 myGetService.async('https://www.googleapis.com/oauth2/v1/tokeninfo?access_token='+token).then(function(d) {
-                console.log(d);/*d= {issued_to: "77917340123.apps.googleusercontent.com", audience: "77917340123.apps.googleusercontent.com", scope: "https://www.googleapis.com/auth/youtube", expires_in: 3600, access_type: "online"…}*/
+                //console.log(d);/*d= {issued_to: "77917340123.apps.googleusercontent.com", audience: "77917340123.apps.googleusercontent.com", scope: "https://www.googleapis.com/auth/youtube", expires_in: 3600, access_type: "online"…}*/
                 d.token=token; // as a convenience add the token so the controller can get it on the data returned.
                 callback(d,type);
                 //check audience matches my app id : 77917340123.apps.googleusercontent.com
