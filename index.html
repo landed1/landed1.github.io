@@ -10,7 +10,8 @@
 
     <title>A small demonstrative website.</title>
 
-    <!-- Bootstrap core CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">-->
     <link href="libs/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
@@ -27,12 +28,12 @@
   </head>
 <!-- NAVBAR
 ================================================== -->
-  <body>
+  <body id="singularBody">
     <div class="navbar-wrapper">
-      <div class="container">
+      <div class="container-fluid">
 
-        <div class="navbar navbar-inverse navbar-static-top" role="navigation">
-          <div class="container">
+        <div class="navbar-inverse navbar-static-top" role="navigation">
+          
             <div class="navbar-header">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -61,7 +62,7 @@
                 </li>
               </ul>
             </div>
-          </div>
+         
         </div>
 
       </div>
@@ -82,9 +83,9 @@
           <img src="images/bmw-320d-light.jpg" alt="BMW Front Light">
           <div class="container">
             <div class="carousel-caption">
-              <h1>Using Bootstrap.</h1>
-              <p>Based on the very simple template called <a href="http://getbootstrap.com/examples/carousel/" target="_blank">Carousel.</a></p>
-              <p><a class="btn btn-lg btn-primary" href="http://getbootstrap.com/" role="button" target="_blank">Get it !</a></p>
+              <h1>Responsive Demo</h1>
+              <p>A site demonstrating some cool web techniques.</p>
+              <p><a class="btn btn-lg btn-primary" href="https://github.com/landed1/landed1.github.io" role="button" target="_blank">See this site in code on Github</a></p>
             </div>
           </div>
         </div>
@@ -118,7 +119,32 @@
     ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
 
+    <div class="jetContainer">
+      <div id="f4"></div>
+    </div>
+  
+    <div class="container-fluid section1">
+      <div class="row">
+        
+          <div class="col-md-4 techBg">
+            <div class="centerContent"><img src="images/HTML5-Shieldx128.png"><p>HTML 5</p></div>
+          </div>
+        
+        
+          <div class="col-md-4 techBg">
+            <div class="centerContent"><img src="images/CSS3-Shieldx128.png"><p>CSS 3</p></div>
+          </div>
+        
+          <div class="col-md-4 techBg">
+            <div class="centerContent"><img src="images/JS-Shieldx128.png"><p>Java Script</p></div>
+          </div>
+        </div>
+      
+    </div>
+
+
     <div class="container marketing">
+      
 
       <!-- Three columns of text below the carousel -->
       <div class="row">
@@ -204,6 +230,8 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="libs/bootstrap/js/bootstrap.min.js"></script>
+    <!--<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>-->
     <script src="js/holder.js"></script>
+    <script src="js/scrollplay.js"></script>
   </body>
 </html>

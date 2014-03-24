@@ -1,3 +1,38 @@
+
+#f4{
+  position: absolute;
+  left:-57px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-image: url("../images/f4.png");
+  width: 57px;
+  height: 12px;
+}
+.section1{
+  background-color: #e10b0b;
+  height: 250px;
+}
+.techBg{
+  background-color: #FFF;
+  padding: 5px;
+
+}
+
+.centerContent img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.centerContent p {
+    text-align:center;
+}
+
+
+.section1 .col-lg-4 {
+text-align: center;
+margin-bottom: 20px;
+}
+
 /* GLOBAL STYLES
 -------------------------------------------------- */
 /* Padding below the footer and lighter body text */
@@ -129,7 +164,7 @@ body {
 /* Carousel base class */
 .carousel {
   height: 500px;
-  margin-bottom: 60px;
+ /* margin-bottom: 60px;*/
 }
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
@@ -158,6 +193,12 @@ body {
 -------------------------------------------------- */
 
 /* Pad the edges of the mobile views a bit */
+.jetContainer{
+  height:24px;
+  max-height: 24px;
+  overflow: hidden;
+}
+
 .marketing {
   padding-left: 15px;
   padding-right: 15px;
